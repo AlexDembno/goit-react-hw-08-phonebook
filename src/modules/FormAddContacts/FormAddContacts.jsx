@@ -7,8 +7,8 @@ import {
 } from 'redux/contactsSlice/contactOperations';
 
 import { selectContacts } from 'redux/contactsSlice/contacts-selectors';
-
-import style from './FormAddContacts.module.css';
+import Button from 'shared/components/Button/Button';
+import styles from './FormAddContacts.module.css';
 
 function FormAddContacts() {
   const [name, setName] = useState('');
@@ -64,10 +64,10 @@ function FormAddContacts() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={style.form}>
+    <form onSubmit={handleSubmit} className={styles.form}>
       <label name="Name">
         <input
-          className={style.input}
+          className={styles.input}
           type="text"
           name="name"
           value={name}
@@ -80,7 +80,7 @@ function FormAddContacts() {
       </label>
       <label name="number">
         <input
-          className={style.input}
+          className={styles.input}
           type="tel"
           name="number"
           value={number}
@@ -91,9 +91,7 @@ function FormAddContacts() {
           onChange={handleChangeInput}
         />
       </label>
-      <button className={style.button} type="submit">
-        Add contact
-      </button>
+      <Button onSubmit={'Add contact'} />
     </form>
   );
 }

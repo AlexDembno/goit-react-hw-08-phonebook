@@ -4,7 +4,6 @@ import PhoneBook from 'pages/PhoneBook/PhoneBook';
 import NotFound from 'pages/NotFound/NotFound';
 import Registration from 'pages/RegistrationPage/RegistrationPage';
 import Login from 'pages/Login/Login';
-import UserMenu from 'modules/UserMenu/UserMenu';
 
 function Routers() {
   return (
@@ -14,7 +13,6 @@ function Routers() {
       <Route path="*" element={<NotFound />} />
       <Route path="/registration" element={<Registration />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/usermenu" element={<UserMenu />} />
     </Routes>
   );
 }

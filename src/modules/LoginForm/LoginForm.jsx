@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchCreateUser } from 'redux/userSlice/userOperations';
+import { fetchLoginUser } from 'redux/userSlice/userOperations';
 
 import Button from 'shared/components/Button/Button';
-import styles from './RegisterForm.module.css';
+import styles from './LoginForm.module.css';
 
-function RegisterForm() {
-  const [name, setName] = useState('');
+function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPasword] = useState('');
 
@@ -15,9 +14,6 @@ function RegisterForm() {
   const handleChangeInput = e => {
     const { name, value } = e.target;
     switch (name) {
-      case 'name':
-        setName(value);
-        break;
       case 'email':
         setEmail(value);
         break;
@@ -33,8 +29,7 @@ function RegisterForm() {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(
-      fetchCreateUser({
-        name: name,
+      fetchLoginUser({
         email: email,
         password: password,
       })
@@ -43,17 +38,6 @@ function RegisterForm() {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <label>
-        <input
-          type="text"
-          className={styles.input}
-          name="name"
-          value={name}
-          required
-          placeholder="Enter name"
-          onChange={handleChangeInput}
-        />
-      </label>
       <label>
         <input
           type="email"
@@ -81,4 +65,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default LoginForm;

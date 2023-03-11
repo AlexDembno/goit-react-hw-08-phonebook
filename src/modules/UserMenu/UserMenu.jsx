@@ -1,7 +1,9 @@
+import { selectUserEmail } from 'redux/userSlice/user-selectors';
+
 function UserMenu() {
   return (
     <div>
-      <p>mango@mail.com</p>
+      <p>{selectUserEmail}</p>
       <button>Logout</button>
     </div>
   );

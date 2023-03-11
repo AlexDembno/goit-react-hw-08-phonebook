@@ -1,0 +1,9 @@
+.link {
+  color: #3f51b5;
+  margin-left: 15px;
+  font-weight: 500;
+}
+
+.link:global(.active) {
+  color: red;
+}
