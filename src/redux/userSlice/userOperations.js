@@ -25,3 +25,37 @@ export const fetchLoginUser = createAsyncThunk(
     }
   }
 );
+
+export const fetchCurrentUser = createAsyncThunk(
+  'user/fetch-current-user',
+  async (_, { rejectWithValue, getState }) => {
+    try {
+      const { user } = getState();
+      const response = await api.currentUser(user.token);
+      console.log(response);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+  {
+    condition: (_, { getState }) => {
+      const { user } = getState();
+      if (!user.token) {
+        return false;
+      }
+    },
+  }
+);
+
+export const fetchLogOutUser = createAsyncThunk(
+  'user/fetch-logout',
+  async (_, thunkApi) => {
+    try {
+      const response = await api.logOutUser();
+      return response;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);

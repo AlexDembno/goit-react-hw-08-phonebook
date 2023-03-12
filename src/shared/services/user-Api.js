@@ -21,8 +21,24 @@ export const createUser = async data => {
 export const loginUser = async data => {
   const response = await instance.post('/users/login', data);
   setToken(response.data.token);
-  console.log(response.data.token);
   return response.data;
 };
 
+export const currentUser = async token => {
+  try {
+    setToken(token);
+    const response = await instance.get('/users/current');
+    return response.data;
+  } catch (error) {
+    setToken();
+    throw error;
+  }
+};
+
 export default instance;
+
+export const logOutUser = async () => {
+  const response = await instance.post('/users/logout');
+  setToken();
+  return response.data;
+};

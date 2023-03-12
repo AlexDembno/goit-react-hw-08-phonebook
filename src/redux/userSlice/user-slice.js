@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchCreateUser, fetchLoginUser } from './userOperations';
+import {
+  fetchCreateUser,
+  fetchLoginUser,
+  fetchCurrentUser,
+  fetchLogOutUser,
+} from './userOperations';
 
 const userSlice = createSlice({
   name: 'user',
@@ -37,6 +42,35 @@ const userSlice = createSlice({
         store.isLogin = true;
       })
       .addCase(fetchLoginUser.rejected, (store, { payload }) => {
+        store.isLoading = false;
+        store.error = payload;
+      })
+      .addCase(fetchCurrentUser.pending, store => {
+        store.isLoading = true;
+        store.error = null;
+      })
+      .addCase(fetchCurrentUser.fulfilled, (store, { payload }) => {
+        store.isLoading = false;
+        store.user.name = payload.name;
+        store.user.email = payload.email;
+        store.token = payload.token;
+        store.isLogin = true;
+      })
+      .addCase(fetchCurrentUser.rejected, (store, { payload }) => {
+        store.isLoading = false;
+        store.error = payload;
+      })
+      .addCase(fetchLogOutUser.pending, store => {
+        store.isLoading = true;
+        store.error = null;
+      })
+      .addCase(fetchLogOutUser.fulfilled, store => {
+        store.isLoading = false;
+        store.user = {};
+        store.token = '';
+        store.isLogin = false;
+      })
+      .addCase(fetchLogOutUser.rejected, (store, { payload }) => {
         store.isLoading = false;
         store.error = payload;
       });
