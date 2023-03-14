@@ -17,7 +17,7 @@ function NavBar() {
         PhoneBook
       </NavLink>
 
-      {isLoding ? <NavBarUser /> : <NavBarAuth />}
+      {isLoding ? <NavBarUser className={styles.link} /> : <NavBarAuth />}
     </ul>
   );
 }

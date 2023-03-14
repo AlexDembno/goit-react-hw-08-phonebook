@@ -58,6 +58,7 @@ const userSlice = createSlice({
       })
       .addCase(fetchCurrentUser.rejected, (store, { payload }) => {
         store.isLoading = false;
+        store.token = '';
         store.error = payload;
       })
       .addCase(fetchLogOutUser.pending, store => {

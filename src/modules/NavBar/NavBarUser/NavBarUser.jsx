@@ -9,14 +9,14 @@ function NavBarUser() {
 
   const dispatch = useDispatch();
 
-  const HandleLoginOut = () => {
+  const handleLoginOut = () => {
     dispatch(fetchLogOutUser());
   };
 
   return (
     <div>
       <p>{email}</p>
-      <button onClick={HandleLoginOut}>Logout</button>
+      <button onClick={handleLoginOut}>Logout</button>
     </div>
   );
 }

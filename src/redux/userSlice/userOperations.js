@@ -6,7 +6,6 @@ export const fetchCreateUser = createAsyncThunk(
   async (data, thunkApi) => {
     try {
       const response = await api.createUser(data);
-      console.log(response);
       return response;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -32,7 +31,6 @@ export const fetchCurrentUser = createAsyncThunk(
     try {
       const { user } = getState();
       const response = await api.currentUser(user.token);
-      console.log(response);
       return response;
     } catch (error) {
       return rejectWithValue(error.message);

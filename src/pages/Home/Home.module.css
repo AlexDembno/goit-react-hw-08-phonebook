@@ -1,0 +1,28 @@
+.wrapper {
+  background-color: white;
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+}
+
+.text {
+  margin-top: 100px;
+  font-size: 120px;
+  color: black;
+  animation-name: spin;
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-iteration-count: 1;
+}
+
+@keyframes spin {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

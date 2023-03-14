@@ -1,16 +1,18 @@
+import styles from './Home.module.css';
+
 function Home() {
-  const greetings = () => {
-    const str = 'phonebook';
-    const arr = str.split('');
-    arr.forEach((el, i) =>
-      setTimeout(() => {
-        console.log(el);
-      }, 2000 * (i + 1))
-    );
-  };
-  const qwe = greetings();
-  console.log(qwe);
-  return <div>Home</div>;
+  const str = 'Phonebook';
+  const arr = str.split('').map((el, i) => (
+    <li className={styles.item} key={i}>
+      <p className={styles.text}>{el}</p>
+    </li>
+  ));
+
+  return (
+    <div className={styles.wrapper}>
+      <ul className={styles.list}>{arr}</ul>
+    </div>
+  );
 }
 
 export default Home;
