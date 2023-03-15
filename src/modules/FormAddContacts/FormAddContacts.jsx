@@ -7,6 +7,7 @@ import {
 } from 'redux/contactsSlice/contactOperations';
 
 import { selectContacts } from 'redux/contactsSlice/contacts-selectors';
+import Input from 'shared/components/Input/Input';
 import Button from 'shared/components/Button/Button';
 import styles from './FormAddContacts.module.css';
 
@@ -65,33 +66,25 @@ function FormAddContacts() {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <label name="Name">
-        <input
-          className={styles.input}
-          type="text"
-          name="name"
+      <label>
+        <Input
+          onChange={handleChangeInput}
+          type={'text'}
+          name={'name'}
           value={name}
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          required
-          placeholder="Enter name"
-          onChange={handleChangeInput}
+          placeholder={'Enter name'}
         />
       </label>
-      <label name="number">
-        <input
-          className={styles.input}
-          type="tel"
-          name="number"
+      <label>
+        <Input
+          onChange={handleChangeInput}
+          type={'tel'}
+          name={'number'}
           value={number}
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          required
-          placeholder="Enter number"
-          onChange={handleChangeInput}
+          placeholder={'Enter number'}
         />
       </label>
-      <Button onSubmit={'Add contact'} />
+      <Button name={'Add contact'} type={'submit'} />
     </form>
   );
 }

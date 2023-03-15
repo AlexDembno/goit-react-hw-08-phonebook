@@ -1,9 +1,10 @@
-.link {
-  color: #3f51b5;
-  margin-left: 15px;
-  font-weight: 500;
+.wrapper {
+  display: flex;
 }
 
-.link:global(.active) {
-  color: red;
+.text {
+  font-size: 18px;
+  color: white;
+  padding: 5px;
+  margin-right: 10px;
 }

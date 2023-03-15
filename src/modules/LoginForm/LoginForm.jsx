@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { fetchLoginUser } from 'redux/userSlice/userOperations';
 
 import Button from 'shared/components/Button/Button';
+import Input from 'shared/components/Input/Input';
 import styles from './LoginForm.module.css';
 
 function LoginForm() {
@@ -30,8 +31,8 @@ function LoginForm() {
     e.preventDefault();
     dispatch(
       fetchLoginUser({
-        email: email,
-        password: password,
+        email,
+        password,
       })
     );
   };
@@ -39,28 +40,24 @@ function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <label>
-        <input
-          type="email"
-          className={styles.input}
-          name="email"
+        <Input
+          type={'email'}
+          name={'email'}
           value={email}
-          required
-          placeholder="Enter email"
+          placeholder={'Enter email'}
           onChange={handleChangeInput}
         />
       </label>
       <label>
-        <input
-          type="password"
-          className={styles.input}
-          name="password"
+        <Input
+          type={'password'}
+          name={'password'}
           value={password}
-          required
-          placeholder="Enter password"
+          placeholder={'Enter password'}
           onChange={handleChangeInput}
         />
       </label>
-      <Button onSubmit={'Submit'} />
+      <Button name={'Submit'} type={'Submit'} />
     </form>
   );
 }

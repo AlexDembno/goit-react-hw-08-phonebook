@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { fetchCreateUser } from 'redux/userSlice/userOperations';
 
 import Button from 'shared/components/Button/Button';
+import Input from 'shared/components/Input/Input';
 import styles from './RegisterForm.module.css';
 
 function RegisterForm() {
@@ -34,9 +35,9 @@ function RegisterForm() {
     e.preventDefault();
     dispatch(
       fetchCreateUser({
-        name: name,
-        email: email,
-        password: password,
+        name,
+        email,
+        password,
       })
     );
   };
@@ -44,39 +45,33 @@ function RegisterForm() {
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
       <label>
-        <input
-          type="text"
-          className={styles.input}
-          name="name"
+        <Input
+          type={'text'}
+          name={'name'}
           value={name}
-          required
-          placeholder="Enter name"
+          placeholder={'Enter name'}
           onChange={handleChangeInput}
         />
       </label>
       <label>
-        <input
-          type="email"
-          className={styles.input}
-          name="email"
+        <Input
+          type={'email'}
+          name={'email'}
           value={email}
-          required
-          placeholder="Enter email"
+          placeholder={'Enter email'}
           onChange={handleChangeInput}
         />
       </label>
       <label>
-        <input
-          type="password"
-          className={styles.input}
-          name="password"
+        <Input
+          type={'password'}
+          name={'password'}
           value={password}
-          required
-          placeholder="Enter password"
+          placeholder={'Enter password'}
           onChange={handleChangeInput}
         />
       </label>
-      <Button onSubmit={'Submit'} />
+      <Button name={'Submit'} type={'Submit'} />
     </form>
   );
 }

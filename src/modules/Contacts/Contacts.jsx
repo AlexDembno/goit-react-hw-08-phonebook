@@ -1,9 +1,9 @@
-import ContactElement from 'modules/ContactElement/ContactElement';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDeleteContacts } from 'redux/contactsSlice/contactOperations';
 import { selectContacts } from 'redux/contactsSlice/contacts-selectors';
 import { selectFilter } from 'redux/filterSlise/filter-selectors';
-import style from './Contacts.module.css';
+import styles from './Contacts.module.css';
+import Button from 'shared/components/Button/Button';
 
 function Contacts() {
   const contacts = useSelector(selectContacts);
@@ -28,19 +28,38 @@ function Contacts() {
   };
 
   return (
-    <ul>
-      {filterName.map(({ id, name, number }) => {
-        return (
-          <li key={id} className={style.item}>
-            <ContactElement
-              name={name}
-              number={number}
-              onClick={() => deleteNumber(id)}
-            />
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      {filterName.length > 0 ? (
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th className={styles.columb}>N</th>
+              <th className={styles.columb}>Name</th>
+              <th className={styles.columb}>Tel</th>
+              <th className={styles.columb}>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filterName.map(({ id, name, number }, index) => (
+              <tr key={id}>
+                <td className={styles.text}>{index + 1}</td>
+                <td className={styles.text}>{name}</td>
+                <td className={styles.text}>{number}</td>
+                <td>
+                  <Button
+                    onClick={() => deleteNumber(id)}
+                    name={'Delete'}
+                    type={'button'}
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p className={styles.text}>No contacts</p>
+      )}
+    </>
   );
 }
 

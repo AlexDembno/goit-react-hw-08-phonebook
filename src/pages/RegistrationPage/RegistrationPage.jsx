@@ -1,9 +1,10 @@
 import RegisterForm from 'modules/RegisterForm/RegisterForm';
 
+import styles from './RegistrationPage.module.css';
+
 function RegistrationPage() {
   return (
-    <div>
-      <p>Registration</p>
+    <div className={styles.wrapper}>
       <RegisterForm />
     </div>
   );

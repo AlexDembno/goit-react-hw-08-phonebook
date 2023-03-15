@@ -1,7 +1,6 @@
 import { filterContact } from 'redux/filterSlise/filter-slise';
 import { useDispatch } from 'react-redux';
-
-import style from './FilterContacts.module.css';
+import Input from 'shared/components/Input/Input';
 
 function FilterContacts() {
   const dispatch = useDispatch();
@@ -11,11 +10,10 @@ function FilterContacts() {
   };
   return (
     <label>
-      <input
-        className={style.input}
-        type="text"
-        placeholder="Find name"
+      <Input
         onChange={handleChangeFilter}
+        type={'text'}
+        placeholder={'Find name'}
       />
     </label>
   );

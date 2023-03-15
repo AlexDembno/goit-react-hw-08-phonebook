@@ -1,3 +1,4 @@
+export const selectIsLoadingUser = ({ user }) => user.isLoading;
 export const selectIsLogin = ({ user }) => user.isLogin;
 export const selectUser = ({ user }) => user.user;
 export const selectLoginAndToken = ({ user }) => {

@@ -1,25 +1,35 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from 'pages/Home/Home';
-import PhoneBook from 'pages/PhoneBook/PhoneBook';
-import NotFound from 'pages/NotFound/NotFound';
-import Registration from 'pages/RegistrationPage/RegistrationPage';
-import Login from 'pages/Login/Login';
+import { lazy, Suspense } from 'react';
+import Layout from 'modules/Layout/Layout';
+import Loader from 'modules/Loader/Loader';
+
 import PrivateRoute from 'modules/PrivateRoute/PrivateRoute';
 import PublicRoute from 'modules/PublicRouter/PublicRoute';
 
+const Home = lazy(() => import('pages/Home/Home'));
+const PhoneBook = lazy(() => import('pages/PhoneBook/PhoneBook'));
+const Registration = lazy(() =>
+  import('pages/RegistrationPage/RegistrationPage')
+);
+const Login = lazy(() => import('pages/Login/Login'));
+
 function Routers() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route element={<PublicRoute />}>
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/login" element={<Login />} />
-      </Route>
-      <Route element={<PrivateRoute />}>
-        <Route path="/contacts" element={<PhoneBook />} />
-      </Route>
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <Suspense fallback={<Loader />}>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route element={<PublicRoute />}>
+            <Route path="/registration" element={<Registration />} />
+            <Route path="/login" element={<Login />} />
+          </Route>
+          <Route element={<PrivateRoute />}>
+            <Route path="/contacts" element={<PhoneBook />} />
+          </Route>
+          <Route path="*" element={<Home />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 

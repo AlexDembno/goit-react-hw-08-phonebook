@@ -1,10 +1,14 @@
 import styles from './Button.module.css';
 
-function Button({ onSubmit }) {
+function Button({ ...props }) {
   return (
     <>
-      <button className={styles.button} type="submit">
-        {onSubmit}
+      <button
+        onClick={props.onClick}
+        className={styles.button}
+        type={props.type}
+      >
+        {props.name}
       </button>
     </>
   );
